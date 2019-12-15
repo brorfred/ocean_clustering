@@ -12,8 +12,8 @@ The effort is done under the auspice of the Simons Collaboration on Computationa
 #### Monthly climatologies based on observations
 Resolution |Gridded | Pandas/hdf5 | Comma separated
 ---|---|---|---
-1/2° | [Download cdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/gridded_geospatial_montly_clim_360_720.nc) | [Download hdf5](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_360_720.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_360_720.csv)
- 1°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_180_360.h5) | [1° tabulated csv file](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_180_360.csv)
+1/2° | [Download cdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/gridded_geospatial_montly_clim_360_720.nc) | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_360_720.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_360_720.csv)
+ 1°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_180_360.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_180_360.csv)
 2°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_090_180.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_090_180.csv)
 4°| | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_045_090.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_045_090.csv)
 
