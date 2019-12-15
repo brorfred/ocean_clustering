@@ -17,7 +17,7 @@ Gridded | Pandas/hdf5 | Comma separated
 ||[2° tabulated hdf5/pandas file](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_090_180.h5) | [2° tabulated csv file](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_090_180.csv)
 || [4° tabulated hdf5/pandas file](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_045_090.h5) | [4° tabulated csv file](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_045_090.csv)
 
-Included Parameters: Sea Surface Temperature (SST), Chlorophyll (Chl), PAR, Wind Speed (wnd), Eddy Kinetik Energy (EKE),Euphotic Depth,Longhurst Region,Mixed Layer Depth (MLD)
+*Included Parameters:* Sea Surface Temperature (SST), Chlorophyll (Chl), PAR, Wind Speed (wnd), Eddy Kinetik Energy (EKE),Euphotic Depth,Longhurst Region,Mixed Layer Depth (MLD)
 
 
 #### Monthly climatologies based on model output
