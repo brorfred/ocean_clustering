@@ -9,11 +9,11 @@ The effort is done under the ausice of the Simons Collaboration on Computational
 
 ### Version 0.1 pre-alpha
 ```
-[1/2° gridded netcdf4 file](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/gridded_geospatial_montly_clim_360_720.nc)
+[1/2° gridded netcdf4 file(https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/gridded_geospatial_montly_clim_360_720.nc)
 
-[1/2° tabulated hdf5/pandas file](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_360_720.h5)
+[1/2° tabulated hdf5/pandas file(https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_360_720.h5)
 
-[1/2° tabulated csv file](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_360_720.csv)
+[1/2° tabulated csv file(https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_1/tabulated_geospatial_montly_clim_360_720.csv)
 
 Included Parameters: Sea Surface Temperature (SST), Chlorophyll (Chl), PAR, Wind Speed (wnd), Eddy Kinetik Energy (EKE),Euphotic Depth,Longhurst Region,Mixed Layer Depth (MLD)
 
