@@ -7,6 +7,18 @@ The effort is done under the auspice of the Simons Collaboration on Computationa
 
 ## Data
 
+### Version 0.2 alpha
+
+#### Monthly climatologies based on observations
+Resolution |Gridded | Pandas/hdf5 | Comma separated
+---|---|---|---
+1/2° | [Download cdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/gridded_geospatial_montly_clim_360_720_ver_0_2.nc) | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_montly_clim_360_720_ver_0_2.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_montly_clim_360_720_ver_0_2.csv)
+ 1°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_montly_clim_180_360_ver_0_2.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_montly_clim_180_360_ver_0_2.csv)
+2°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_montly_clim_090_180_ver_0_2.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_montly_clim_090_180_ver_0_2.csv)
+4°| | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_montly_clim_045_090_ver_0_2.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_montly_clim_045_090_ver_0_2.csv)
+
+*Included Parameters:* Sea Surface Temperature (SST), Chlorophyll (Chl), PAR, Kd490, Euphotic Depth, Mixed Layer Depth (MLD), Wind Speed (wind), Eddy Kinetik Energy (EKE), Bathymetry, Rrs412, Rrs443, Rrs490, Rrs510, Rrs555, Rrs670
+
 ### Version 0.1 pre-alpha
 
 #### Monthly climatologies based on observations
