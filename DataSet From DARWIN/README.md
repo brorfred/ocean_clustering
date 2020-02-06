@@ -27,6 +27,8 @@ This folder contains code written in Julia to generate gridded data for the foll
 - "Bottom Depth"    (depth, meters)
 - "Wind Speed"      (m/s)
 - "TKE"             (m^2/s^2) is GGL90 sub-grid turbulent kinetic energy
+- "PAR"             () 
+- "Euphotic Depth"  Depth (m) where light is 1% of the surface values
 
 **Missing Variables**
 
@@ -53,3 +55,5 @@ Oceanogr., 57, 1877–1891, <https://dx.doi.org/10.4319/lo.2012.57.6.1877> or [t
 - `2020/01/22 [Chris Follett]` create README file
 
 - `2020/01/22 [Chris Follett]` edited README file
+- 
+- `2020/02/06 [Chris Follett]` edited README file
