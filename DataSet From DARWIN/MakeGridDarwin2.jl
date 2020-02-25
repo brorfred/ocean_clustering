@@ -7,15 +7,16 @@ using Plots, Distributions, NetCDF, NCDatasets, Interpolations
 
 function MakeMasterHalf()
     #This is the starting folder for the Climatology
-    name="C:\\Users\\folle\\Dropbox (MIT)\\201805-CBIOMES-climatology\\interp"
+    #name="C:\\Users\\folle\\Dropbox (MIT)\\201805-CBIOMES-climatology\\interp"
+    name="C:\\Users\\folle\\Documents\\CBIOMES\\interp"
     #This is the filename for the .5 degree monthly climatology
     filename="HalfDegree.nc"
     #These are the variable names which we would like on the grid
-    #Lat, lon, time, T, S, *PAR*, Wave Bands, Chl, mixed layer depth, *bottom depth*,
+    #Lat, lon, time, T, S, PAR, Wave Bands, Chl, mixed layer depth, *bottom depth*,
     #Wind Speed, *Ekman pumping*, *Kd*, *Euphotic Depth*, and Eddy Kinetic Energy
     varnamest=["THETA", "SALT", "Rirr001", "Rirr002", "Rirr003", "Rirr004", "Rirr005",
     "Rirr006", "Rirr007", "Rirr008", "Rirr009", "Rirr010", "Rirr011", "Rirr012", "Rirr013", "Chl",
-    "MXLDEPTH", "EXFwspee", "GGL90TKE"]
+    "MXLDEPTH", "EXFwspee", "GGL90TKE","PAR"]
 
     # Check if .nc file exists
     if isfile(filename)
@@ -91,7 +92,7 @@ function MakeMasterHalf()
         end
         T=T[:,:,:]
         Tg[:,:,:,m]=T
-        nccreate(filename, fieldsort,"Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+        nccreate(filename, fieldsort,"Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
         ncwrite(T,filename, fieldsort)
     end
 
@@ -122,7 +123,7 @@ function MakeMasterHalf()
     #export OCCIbands
     if ~isfile("InterpedWavebands.nc")
         for n in 1:6
-        nccreate("InterpedWavebands3.nc", OCCIbands[n],"Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+        nccreate("InterpedWavebands3.nc", OCCIbands[n],"Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
         ncwrite(wbcci[:,:,:,n],"InterpedWavebands3.nc", OCCIbands[n])
         end
     end
@@ -137,8 +138,63 @@ function MakeMasterHalf()
     if isfile("BottomDepth.nc")
         rm("BottomDepth.nc")
     end
-    nccreate("BottomDepth.nc", "Bottom Depth","Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+    nccreate("BottomDepth.nc", "Bottom Depth","Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
     ncwrite(bdepth,"BottomDepth.nc", "Bottom Depth")
+    
+    ## This part finds the 'Euphotic Depth' which we define as the location where PAR is at 1% of its original value
+    # export bdepth
+    bdepth=ncread("BottomDepth.nc","Bottom Depth")
+    PAR=ncread(name*"\\IrradianceReflectance\\PAR.0001.nc","PAR");
+    dept=ncread(name*"\\IrradianceReflectance\\PAR.0001.nc","dep");
+    s1, s2, s3, s4 = size(PAR,1), size(PAR,2), size(PAR,3), size(PAR,4)        
+    PARs=PAR[:,:,1,:]
+    Eudepth=zeros(size(bdepth))
+    tmp=PAR
+    #tmp=Array{Float64,4}(undef,s1,s2,s3,s4)
+    for n in collect(1:s3)
+        tmp[:,:,n,:]=tmp[:,:,n,:]./PARs
+    end
+    # export bdepth, tmp, dept, Eudepth
+    for n in 1:720
+        for m in 1:360
+            for o in 1:12
+                #export n, m, o
+                #The negative in the tmp variable is to make the PAR strictly increasing
+                if ~(bdepth[n,m,o]==0)
+                    bd=bdepth[n,m,o]
+                    if minimum(tmp[n,m,dept.<bd,o])<.01
+                    #  println("made it")
+                     md=(minimum(dept[tmp[n,m,:,o].<=.01]))
+                    # itp=LinearInterpolation(-tmp[n,m,dept.<=md,o],dept[dept.<=md])
+                    #  plot(-tmp[n,m,t.==0,o],dept[t.==0])
+                    #  println("yes")             
+                     Eudepth[n,m,o]=md
+                        # d=diff(tmp[n,m,:,o])
+                        # D=zeros(length(d)+1)
+                        # D[1:length(d)]=d
+                        # t=cumsum(D.>=0)
+                        # # println(t)
+                        # #  println(size(dept.<bd))
+                        # # println([n m o])
+                        # println(dept[t.=0])
+                        # itp=LinearInterpolation(-tmp[n,m,t.==0,o],dept[t.==0])
+                        # plot(-tmp[n,m,t.==0,o],dept[t.==0])
+                        # println("yes")             
+                        # Eudepth[n,m,o]=itp.(-.01)
+                        # #itp=LinearInterpolation(dept[dept.<bd],tmp[n,m,dept.<bd,o])
+                        # #Eudepth[n,m,o]=find_zero(itp,10)                    
+                    end
+                end
+            end
+        end
+    end
+    if isfile("EuphoticDepth.nc")
+         rm("EuphoticDepth.nc")
+    end
+    nccreate("EuphoticDepth.nc", "Euphotic Depth","Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+    ncwrite(Eudepth,"EuphoticDepth.nc", "Euphotic Depth")
+    #lon lat depth t
+
 
     #OK, now I will unpack the variables, and create a master netcdf file at half degree resolution
     if isfile("MasterHalf.nc")
@@ -150,37 +206,42 @@ function MakeMasterHalf()
 
     #We have everything except PAR, Ekman pumping, Kd, and Euphotic Depth.
     vars=["THETA", "SALT", "Chl", "Rirr412", "Rirr443", "Rirr490", "Rirr510", "Rirr555",
-    "Rirr670","MXLDEPTH","Bottom Depth", "EXFwspee", "GGL90TKE"]
+    "Rirr670","MXLDEPTH","Bottom Depth", "EXFwspee", "GGL90TKE","PAR","Euphotic Depth"]
     realnames=["THETA", "SALT", "Chl", "Rirr412", "Rirr443", "Rirr490", "Rirr510", "Rirr555",
-    "Rirr670","MXLDEPTH","Bottom Depth", "Wind Speed", "TKE"]
+    "Rirr670","MXLDEPTH","Bottom Depth", "Wind Speed", "TKE","PAR","Euphotic Depth"]
     #export vars
     Tg=Array{Float64,4}(undef,720,360,12,length(vars))
     for n in [1 2 3]
         Tg[:,:,:,n]=ncread("HalfDegree.nc",vars[n])
-        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))   
+        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))   
         ncwrite(Tg[:,:,:,n],"MasterHalf.nc", realnames[n])
     end
     for n in [4 5 6 7 8 9]
         Tg[:,:,:,n]=ncread("InterpedWavebands3.nc",vars[n])
-        println("dm")
-        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
-        println("dm dm")
+        #println("dm")
+        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+        #println("dm dm")
         ncwrite(Tg[:,:,:,n],"MasterHalf.nc", realnames[n])
-        println("dm dm dm")
+        #println("dm dm dm")
     end
     for n in [10]
         Tg[:,:,:,n]=ncread("HalfDegree.nc",vars[n])
-        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
         ncwrite(Tg[:,:,:,n],"MasterHalf.nc", realnames[n])
     end
     for n in [11]
         Tg[:,:,:,n]=ncread("BottomDepth.nc",vars[n])
-        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
         ncwrite(Tg[:,:,:,n],"MasterHalf.nc", realnames[n])
     end
-    for n in [12 13]
+    for n in [12 13 14]
         Tg[:,:,:,n]=ncread("HalfDegree.nc",vars[n])
-        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+        ncwrite(Tg[:,:,:,n],"MasterHalf.nc", realnames[n])
+    end
+    for n in [15]
+        Tg[:,:,:,n]=ncread("EuphoticDepth.nc",vars[n])
+        nccreate("MasterHalf.nc", realnames[n],"Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
         ncwrite(Tg[:,:,:,n],"MasterHalf.nc", realnames[n])
     end
 end
