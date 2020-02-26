@@ -4,10 +4,23 @@
 # curl https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/gridded_geospatial_montly_clim_360_720_ver_0_2.nc > gridded_geospatial_montly_clim_360_720_ver_0_2.nc
 # curl https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/gridded_darwin_montly_clim_360_720_ver_0_2.nc > gridded_darwin_montly_clim_360_720_ver_0_2.nc
 # docker run -P -d --rm -i -t -v `pwd`:/home/jovyan/host jupyter/datascience-notebook 
+#  -or-
+# curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh > Miniconda3-latest-MacOSX-x86_64.sh'
+# chmod +x Miniconda3-latest-MacOSX-x86_64.sh 
+# ./Miniconda3-latest-MacOSX-x86_64.sh  -b -p `pwd`/miniconda3
+# export PATH="`pwd`/miniconda3/bin:$PATH"
+# conda create -n ocean-clustering -c conda-forge python=3.7
+# 
+# . miniconda3/etc/profile.d/conda.sh
+# conda activate ocean-clustering
+# 
 # conda install netCDF4
 # conda install  numpy
 # conda install xarray
 # conda install cartopy
+#
+# python oc-histo-plot.py
+# produces .png plots for each compared field 
 
 import xarray as xr
 import matplotlib.pyplot as plt
