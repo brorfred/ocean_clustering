@@ -45,8 +45,8 @@ Using Julia & nectdf:
 ```julia
 path="https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_5"
 file="gridded_geospatial_montly_clim_360_720_ver_0_2.nc"
-
 run(`wget $root/$file`)
+
 Using NCDatasets
 Dataset(file)
 ```
