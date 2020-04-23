@@ -25,10 +25,30 @@ Resolution |Gridded | Pandas/hdf5 | Comma separated
 2°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_5/tabulated_geospatial_montly_clim_090_180_ver_0_2_5.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_5/tabulated_geospatial_montly_clim_090_180_ver_0_2_5.csv)
 4°| | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_5/tabulated_geospatial_montly_clim_045_090_ver_0_2_5.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_5/tabulated_geospatial_montly_clim_045_090_ver_0_2_5.csv)
 
-Netcdf files are identical to the 0.2 version but the csv and tab files includes invalid data. Just remove all NaN's if needed. For example:
+Netcdf files are identical to the 0.2 version but the csv and tab files includes invalid data. Just remove all NaN's if needed. There are many ways to access the file contents -- here are a few examples:
+
+Using Python & csv:
 
 ```python
 pd.read_hdf("https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_5/tabulated_geospatial_montly_clim_045_090_ver_0_2_5.csv").dropna(inplace=True)
+```
+
+Using Julia & csv:
+
+```julia
+using CSV;
+CSV.read(download("https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_5/tabulated_geospatial_montly_clim_045_090_ver_0_2_5.csv"))
+```
+
+Using Julia & nectdf:
+
+```julia
+path="https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_5"
+file="gridded_geospatial_montly_clim_360_720_ver_0_2.nc"
+
+run(`wget $root/$file`)
+Using NCDatasets
+Dataset(file)
 ```
 
 #### Data Sources
