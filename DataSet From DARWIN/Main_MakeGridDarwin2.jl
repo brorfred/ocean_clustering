@@ -3,10 +3,10 @@
 
 include("MakeGridDarwin2.jl")
 
-if ~isfile("MasterHalf.nc")
+#if ~isfile("MasterHalf.nc")
     MakeMasterHalf()
-end
-realnames=["Latitude","Longitude","Month","THETA", "SALT", "Chl", "Rirr412", "Rirr443", "Rirr490", "Rirr510", "Rirr555","Rirr670","MXLDEPTH","Bottom Depth", "Wind Speed", "TKE","PAR","Euphotic Depth"]
-for n in [.5 1 2 4]
-MakeDarwinGrid(n,realnames)
-end
+#end
+# realnames=["Latitude","Longitude","Month","THETA", "SALT", "Chl", "Rirr412", "Rirr443", "Rirr490", "Rirr510", "Rirr555","Rirr670","MXLDEPTH","Bottom Depth", "Wind Speed", "TKE","PAR","Euphotic Depth"]
+# for n in [.5 1 2 4]
+# MakeDarwinGrid(n,realnames)
+# end
