@@ -9,6 +9,8 @@ function MakeMasterHalf()
     #This is the starting folder for the Climatology
     #name="C:\\Users\\folle\\Dropbox (MIT)\\201805-CBIOMES-climatology\\interp"
     name="C:\\Users\\folle\\Documents\\CBIOMES\\interp"
+    #name="/nfs/cnhlab001/cnh/cbiomes/201805-CBIOMES-climatology/interp/"
+    
     #This is the filename for the .5 degree monthly climatology
     filename="HalfDegree.nc"
     #These are the variable names which we would like on the grid
@@ -121,7 +123,10 @@ function MakeMasterHalf()
     OCCIbands=["Rirr412", "Rirr443", "Rirr490", "Rirr510", "Rirr555",
     "Rirr670"]
     #export OCCIbands
-    if ~isfile("InterpedWavebands.nc")
+    if isfile("InterpedWavebands3.nc")
+        rm("InterpedWavebands3.nc")
+    end
+    if ~isfile("InterpedWavebands3.nc")
         for n in 1:6
         nccreate("InterpedWavebands3.nc", OCCIbands[n],"Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
         ncwrite(wbcci[:,:,:,n],"InterpedWavebands3.nc", OCCIbands[n])
@@ -191,7 +196,7 @@ function MakeMasterHalf()
     if isfile("EuphoticDepth.nc")
          rm("EuphoticDepth.nc")
     end
-    nccreate("EuphoticDepth.nc", "Euphotic Depth","Lon",collect(.5:.5:360),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
+    nccreate("EuphoticDepth.nc", "Euphotic Depth","Lon",collect(-179.75:.5:179.75),"Lat",collect(-89.75:.5:89.75),"Month",collect(1:12))
     ncwrite(Eudepth,"EuphoticDepth.nc", "Euphotic Depth")
     #lon lat depth t
 
@@ -207,8 +212,8 @@ function MakeMasterHalf()
     #We have everything except PAR, Ekman pumping, Kd, and Euphotic Depth.
     vars=["THETA", "SALT", "Chl", "Rirr412", "Rirr443", "Rirr490", "Rirr510", "Rirr555",
     "Rirr670","MXLDEPTH","Bottom Depth", "EXFwspee", "GGL90TKE","PAR","Euphotic Depth"]
-    realnames=["THETA", "SALT", "Chl", "Rirr412", "Rirr443", "Rirr490", "Rirr510", "Rirr555",
-    "Rirr670","MXLDEPTH","Bottom Depth", "Wind Speed", "TKE","PAR","Euphotic Depth"]
+    realnames=["SST", "SALT", "Chl", "Rrs412", "Rrs443", "Rrs490", "Rrs510", "Rrs555",
+    "Rrs670","MLD","Bathymetry", "wind", "EKE","PAR","Euphotic Depth"]
     #export vars
     Tg=Array{Float64,4}(undef,720,360,12,length(vars))
     for n in [1 2 3]
@@ -255,7 +260,7 @@ function MakeDarwinGrid(deg,names)
     for n in 1:length(names)
         if sum(k.==names[n])>=1
             vartmp=ncread("MasterHalf.nc",names[n])
-            nccreate("DarwinGrid"*string(deg)*".nc", names[n],"Londim",collect(.5:deg:360),"Latdim",collect(-89.75:deg:89.75),"Monthdim",collect(1:12))
+            nccreate("DarwinGrid"*string(deg)*".nc", names[n],"Londim",collect(-179.75:deg:179.75),"Latdim",collect(-89.75:deg:89.75),"Monthdim",collect(1:12))
             #println(size(vartmp[1:Int(deg/.5):end,1:Int(deg/.5):end,:]))
             #println(size(vartmp))
             tmp=vartmp[1:Int(deg/.5):end,1:Int(deg/.5):end,:];
@@ -268,7 +273,7 @@ function MakeDarwinGrid(deg,names)
             ncwrite(tmp,"DarwinGrid"*string(deg)*".nc", names[n])
         end
         if sum(k.==names[n])==0
-            tmp=zeros(length(collect(.5:deg:360)), length(collect(-89.75:deg:89.75)),12)
+            tmp=zeros(length(collect(-179.75:deg:179.75)), length(collect(-89.75:deg:89.75)),12)
             if names[n]=="Latitude"
                 Lat=collect(-89.75:deg:89.75);
                 for m in 1:length(Lat)
@@ -276,7 +281,7 @@ function MakeDarwinGrid(deg,names)
                     tmp2=fill(Lat[m],size(tmp[:,m,:]))
                     tmp[:,m,:]=tmp2
                 end
-                nccreate("DarwinGrid"*string(deg)*".nc", names[n],"Londim",collect(.5:deg:360),"Latdim",collect(-89.75:deg:89.75),"Monthdim",collect(1:12))
+                nccreate("DarwinGrid"*string(deg)*".nc", names[n],"Londim",collect(-179.75:deg:179.75),"Latdim",collect(-89.75:deg:89.75),"Monthdim",collect(1:12))
                 ncwrite(tmp,"DarwinGrid"*string(deg)*".nc", names[n])
                 sztmp=size(tmp)
             end
