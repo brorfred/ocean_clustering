@@ -75,7 +75,7 @@ Rrs670 | `ESA OC-CCI L4` | `10.5285/9C334FBE6D424A708CF3C4CF0C6A53F5`
 <sup>1</sup> Calculated from geostrophic velocities
 <sup>2</sup> Blended Sea Winds from [URL](https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds)
 
-### Model Monthly Climatologies
+### Model Monthly Climatologies (`v0.2.6 alpha`)
 
 These were downloaded from the source listed below and regridded using the [gcmfaces](http://gcmfaces.readthedocs.io/en/latest/) toolbox plus recipes from [OceanColorData.jl](https://gaelforget.github.io/OceanColorData.jl/dev/) [(these notebooks)](https://github.com/gaelforget/MarineEcosystemNotebooks) and those included here in `DataSet From DARWIN/`.
 
@@ -83,10 +83,12 @@ These were downloaded from the source listed below and regridded using the [gcmf
 
 Resolution |Gridded | Pandas/hdf5 | Comma separated
 ---|---|---|---
-1/2° | [Download cdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/gridded_darwin_montly_clim_360_720_ver_0_2.nc) | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_darwin_montly_clim_360_720_ver_0_2.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_darwin_montly_clim_360_720_ver_0_2.csv)
- 1°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_darwin_montly_clim_180_360_ver_0_2.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_darwin_montly_clim_180_360_ver_0_2.csv)
-2°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_darwin_montly_clim_090_180_ver_0_2.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_darwin_montly_clim_090_180_ver_0_2.csv)
-4°| | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_darwin_montly_clim_045_090_ver_0_2.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_darwin_montly_clim_045_090_ver_0_2.csv)
+1/2° | [Download cdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_6/gridded_darwin_montly_clim_360_720_ver_0_2_6_6.nc) | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_6/tabulated_darwin_montly_clim_360_720_ver_0_2_6.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_6/tabulated_darwin_montly_clim_360_720_ver_0_2_6.csv)
+ 1°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_6/tabulated_darwin_montly_clim_180_360_ver_0_2_6.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_6/tabulated_darwin_montly_clim_180_360_ver_0_2_6.csv)
+2°| |[Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_6/tabulated_darwin_montly_clim_090_180_ver_0_2_6.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_6/tabulated_darwin_montly_clim_090_180_ver_0_2_6.csv)
+4°| | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_6/tabulated_darwin_montly_clim_045_090_ver_0_2_6.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2_6/tabulated_darwin_montly_clim_045_090_ver_0_2_6.csv)
+
+Rrs values have been fixed.
 
 **Source:** [DOI](10.5281/zenodo.2653669), [URL](http://engaging-opendap.mit.edu:8080/thredds/dodsC/las/id-fba1de9aef/), [Documentation](https://cbiomes.readthedocs.io/) 
 
@@ -104,4 +106,3 @@ Resolution |Gridded | Pandas/hdf5 | Comma separated
 4°| | [Download hdf](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_regions_045_090_ver_0_2.h5) | [Download csv](https://rsg.pml.ac.uk/shared_files/brj/CBIOMES_ecoregions/ver_0_2/tabulated_geospatial_regions_045_090_ver_0_2.csv)
 -->
 *Included Parameters:* Longhurst, optical\_water\_classes
-
